@@ -1,0 +1,7 @@
+.profile{
+  font-family: 'Inter', Arial, sans-serif;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
