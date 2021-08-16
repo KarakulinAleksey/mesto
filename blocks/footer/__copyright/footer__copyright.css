@@ -1,11 +1,11 @@
-.section-title_size_medium {
-  font-weight: 400;
+.footer__copyright {
   font-size: 18px;
   line-height: 22px;
+  margin: 0;
 }
 
 @media screen and (max-width: 965px) {
-  .section-title_size_medium {
+  .footer__copyright {
     font-size: 14px;
     line-height: 17px;
   }

@@ -1,0 +1,15 @@
+.elements__image-likee {
+  background-image: url(../../../images/heart.svg);
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+}
+
+.elements__image-likee:hover {
+  opacity: 0.5;
+}
+
+.elements__image-likee:active {
+  background-image: url(../../../images/likeeimageblack.svg);
+  opacity: 1;
+}

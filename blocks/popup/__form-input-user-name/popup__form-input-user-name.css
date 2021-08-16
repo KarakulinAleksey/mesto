@@ -1,0 +1,22 @@
+.popup__form-input-user-name {
+  height: 27px;
+  width: 358px;
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  /* opacity: 0.2; */
+  padding: 0;
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 965px) {
+  .popup__form-input-user-name {
+    width: 238px;
+    height: 27px;
+    margin-top: 75px;
+  }
+}
+
+.popup__form-input-user-name:focus{
+  outline: none;
+
+}

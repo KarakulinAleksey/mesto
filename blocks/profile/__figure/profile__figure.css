@@ -5,3 +5,9 @@
   margin: 0;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 965px) {
+  .profile__figure {
+    flex-direction: column;
+  }
+}
