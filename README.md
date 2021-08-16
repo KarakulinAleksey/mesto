@@ -1,6 +1,6 @@
 ﻿# Проект: Место
 
-https://karakulinaleksey.github.io/yet-another-project/index.html
+https://karakulinaleksey.github.io/mesto/index.html
 
 Это практическая работа необходимая для закрепления пройдённого материала.  
 В этой работе мне удалось освоить следующие технологии разработки адаптивного сайта с применением JavaScript
