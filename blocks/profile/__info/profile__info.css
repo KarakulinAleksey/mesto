@@ -1,7 +1,9 @@
 .profile__info {
   margin-left: 30px;
   width: 336px;
-  text-align: start;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 965px) {
@@ -9,5 +11,7 @@
     margin: 0;
     width: 282px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 }

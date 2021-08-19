@@ -22,7 +22,7 @@
       /></a>
     </header>
 
-    <main class="content section page__content content__section">
+    <main class="content section page__content">
       <section class="profile section">
         <div class="profile__figure">
           <img
@@ -31,31 +31,25 @@
             class="profile__avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__title section-title">Жак-Ив Кусто</h1>
-            <p class="profile__text section-title section-title_size_medium">
-              Исследователь океана
-            </p>
+            <div class="profile__info-text">
+              <h1 class="profile__title section-title">Жак-Ив Кусто</h1>
+              <p class="profile__text section-title section-title_size_medium">Исследователь океана</p>
+            </div>
+            <button
+              type="button"
+              class="profile__edit-button"
+              aria-label="кнопка редактирования профиля"
+            ></button>
           </div>
-          <button class="profile__edit-button">
-            <img
-              class="profile__edit-button-img"
-              src="./images/Pencil.svg"
-              alt="изображение кнопки редактировать"
-            />
-          </button>
         </div>
-        <button class="profile__add-button">
-          <img
-            class="profile__add-button-img"
-            src="./images/Plus.svg"
-            alt="изображение кнопки добавить"
-          />
+        <button
+          type="button"
+          class="profile__add-button"
+          aria-label="кнопка добавления картинок"
+        >
         </button>
       </section>
-      <section
-        class="elements section content__section"
-        aria-label="фотогалерея"
-      >
+      <section class="elements section" aria-label="фотогалерея">
         <ul class="elements__list">
           <li class="elements__element">
             <img
@@ -65,7 +59,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Карачаевск</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -76,7 +70,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Гора Эльбрус</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -87,7 +81,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Домбай</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -98,7 +92,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Гора Эльбрус</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -109,7 +103,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Домбай</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -120,7 +114,7 @@
             />
             <div class="elements__likee">
               <h2 class="elements__title">Карачаево-Черкессия</h2>
-              <div class="elements__image-likee"></div>
+              <button type="button" class="elements__image-likee"></button>
             </div>
           </li>
         </ul>
@@ -132,28 +126,31 @@
     </footer>
 
     <div class="popup">
-      <div class="popup__form section">
-        <button class="popup__form-button-exit">
-          <img
-            class="popup__form-button-exit-img"
-            src="./images/CloseIcon.svg"
-            alt="Изображение кнопки выход"
-          />
+      <form class="popup__form section" name="form-user-profile">
+        <button
+          type="button"
+          class="popup__form-button-exit"
+          aria-label="кнопка закрытия формы редактирования профиля"
+        >
         </button>
         <h2 class="popup__form-title section-title">Редактировать профиль</h2>
         <input
+          name="input-user-name"
           type="text"
-          placeholder="Введите своё имя"
-          class="popup__form-input-user-name section-title"
+          class="popup__form-input section-title popup__form-input_type_name"
         />
         <input
+          name="input-profession"
           type="text"
-          placeholder="Ваша профессия"
-          class="popup__form-input-profession section-title"
+          class="
+            popup__form-input
+            section-title
+            popup__form-input_type_profession
+          "
         />
-        <button type="button" class="popup__form-button-save">Сохранить</button>
-      </div>
+        <button type="submit" class="popup__form-button-save">Сохранить</button>
+      </form>
     </div>
-    <script src="./script.js"></script>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
