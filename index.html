@@ -46,8 +46,7 @@
           type="button"
           class="profile__add-button"
           aria-label="кнопка добавления картинок"
-        >
-        </button>
+        ></button>
       </section>
       <section class="elements section" aria-label="фотогалерея">
         <ul class="elements__list">
@@ -126,31 +125,38 @@
     </footer>
 
     <div class="popup">
-      <form class="popup__form section" name="form-user-profile">
+      <div class="popup__container">
         <button
           type="button"
           class="popup__form-button-exit"
           aria-label="кнопка закрытия формы редактирования профиля"
-        >
-        </button>
-        <h2 class="popup__form-title section-title">Редактировать профиль</h2>
-        <input
-          name="input-user-name"
-          type="text"
-          class="popup__form-input section-title popup__form-input_type_name"
-        />
-        <input
-          name="input-profession"
-          type="text"
-          class="
-            popup__form-input
-            section-title
-            popup__form-input_type_profession
-          "
-        />
-        <button type="submit" class="popup__form-button-save">Сохранить</button>
-      </form>
+        ></button>
+
+        <form class="popup__form section" name="form-user-profile">
+          <h2 class="popup__form-title section-title">Редактировать профиль</h2>
+          <input
+            name="input-user-name"
+            placeholder="Введите имя"
+            type="text"
+            class="popup__form-input section-title popup__form-input_type_name"
+          />
+          <input
+            name="input-profession"
+            placeholder="Введите профессию"
+            type="text"
+            class="
+              popup__form-input
+              section-title
+              popup__form-input_type_profession
+            "
+          />
+          <button type="submit" class="popup__form-button-save">
+            Сохранить
+          </button>
+        </form>
+      </div>
     </div>
+
     <script src="./scripts/script.js"></script>
   </body>
 </html>

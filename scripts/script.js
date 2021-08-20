@@ -10,8 +10,9 @@ let profileTitle = profileInfo.querySelector(".profile__title");
 let profileText = profileInfo.querySelector(".profile__text");
 
 let popup = page.querySelector(".popup");
-let popupForm = popup.querySelector(".popup__form");
-let popupFormButtonExit = popupForm.querySelector(".popup__form-button-exit");
+let popupContainer =popup.querySelector(".popup__container");
+let popupFormButtonExit = popup.querySelector(".popup__form-button-exit");
+let popupForm = popupContainer.querySelector(".popup__form");
 let popupFormInputUserName = popupForm.querySelector(
   ".popup__form-input_type_name"
 );
@@ -22,10 +23,12 @@ let popupFormInputProfession = popupForm.querySelector(
 
 function popupShow() {
   popup.classList.add("popup_show");
-  popupFormInputUserName.value="";
-  popupFormInputProfession.value="";
-  popupFormInputUserName.placeholder = profileTitle.textContent;
-  popupFormInputProfession.placeholder = profileText.textContent;
+  // popupFormInputUserName.value="";
+  // popupFormInputProfession.value="";
+  // popupFormInputUserName.placeholder = profileTitle.textContent;
+  // popupFormInputProfession.placeholder = profileText.textContent;
+  popupFormInputUserName.value = profileTitle.textContent;
+  popupFormInputProfession.value = profileText.textContent;
 }
 function popupClose() {
   popup.classList.remove("popup_show");
