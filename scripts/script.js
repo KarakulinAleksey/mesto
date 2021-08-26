@@ -45,3 +45,49 @@ function formSubmitHandler (evt) {
 }
 
 popupForm.addEventListener('submit', formSubmitHandler);
+
+
+//-----------------заполняю секцию elements фото и подписью------------------------------------
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const elementsList = content.querySelector(".elements__list");
+console.log(elementsList);
+
+const elementsListImage = elementsList.querySelectorAll(".elements__image");
+console.log(elementsListImage);
+
+elementsListImage.forEach(function(item, index) {
+  item.src = initialCards[index].link;
+});
+
+const elementsListTitle = elementsList.querySelectorAll(".elements__title");
+console.log(elementsListTitle);
+
+elementsListTitle.forEach(function(item, index){
+  item.textContent = initialCards[index].name;
+});
