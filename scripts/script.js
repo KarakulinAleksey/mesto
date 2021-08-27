@@ -79,15 +79,28 @@ const elementsList = content.querySelector(".elements__list");
 console.log(elementsList);
 
 const elementsListImage = elementsList.querySelectorAll(".elements__image");
-console.log(elementsListImage);
+//console.log(elementsListImage);
 
 elementsListImage.forEach(function(item, index) {
   item.src = initialCards[index].link;
 });
 
 const elementsListTitle = elementsList.querySelectorAll(".elements__title");
-console.log(elementsListTitle);
+//console.log(elementsListTitle);
 
 elementsListTitle.forEach(function(item, index){
   item.textContent = initialCards[index].name;
 });
+
+//--------------меняем цвет кнопки Лайк--------------------------------
+
+const buttonElementsImageLikee = elementsList.querySelectorAll('.elements__image-likee');
+//console.log(buttonElementsImageLikee);
+buttonElementsImageLikee.forEach(function(item){
+  item.addEventListener('click', function(evt){
+  console.log(evt);
+  const evtTarget = evt.target;
+  evtTarget.classList.toggle('elements__image-like_active');
+})
+})
+
