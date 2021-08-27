@@ -1,195 +1,171 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Mesto</title>
-    <meta name="description" content="Сервис Mesto" />
-    <meta name="keywords" content="Фотографии, люди, интересные места" />
-    <meta name="author" content="Алексей Каракулин" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./pages/index.css" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body class="page">
-    <header class="header section page__header">
-      <a class="logo header__logo" href="#"
-        ><img
-          class="logo__image"
-          src="./images/logo.svg"
-          alt="Логотип сервиса Место"
-      /></a>
-    </header>
+  <title>Mesto</title>
+  <meta name="description" content="Сервис Mesto" />
+  <meta name="keywords" content="Фотографии, люди, интересные места" />
+  <meta name="author" content="Алексей Каракулин" />
+</head>
 
-    <main class="content section page__content">
-      <section class="profile section">
-        <div class="profile__figure">
-          <img
-            src="./images/kusto.jpg"
-            alt="фотогалерея Жак-Ив Кусто"
-            class="profile__avatar"
-          />
-          <div class="profile__info">
-            <div class="profile__info-text">
-              <h1 class="profile__title section-title">Жак-Ив Кусто</h1>
-              <p class="profile__text section-title section-title_size_medium">
-                Исследователь океана
-              </p>
-            </div>
-            <button
-              type="button"
-              class="profile__edit-button"
-              aria-label="кнопка редактирования профиля"
-            ></button>
+<body class="page">
+  <header class="header section page__header">
+    <a class="logo header__logo" href="#"><img class="logo__image" src="./images/logo.svg"
+        alt="Логотип сервиса Место" /></a>
+  </header>
+
+  <main class="content section page__content">
+    <section class="profile section">
+      <div class="profile__figure">
+        <img src="./images/kusto.jpg" alt="фотогалерея Жак-Ив Кусто" class="profile__avatar" />
+        <div class="profile__info">
+          <div class="profile__info-text">
+            <h1 class="profile__title section-title">Жак-Ив Кусто</h1>
+            <p class="profile__text section-title section-title_size_medium">
+              Исследователь океана
+            </p>
           </div>
+          <button type="button" class="profile__edit-button" aria-label="кнопка редактирования профиля"></button>
         </div>
-        <button
-          type="button"
-          class="profile__add-button"
-          aria-label="кнопка добавления картинок"
-        ></button>
-      </section>
-      <section class="elements section" aria-label="фотогалерея">
-        <ul class="elements__list">
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
+      </div>
+      <button type="button" class="profile__add-button" aria-label="кнопка добавления картинок"></button>
+    </section>
+    <section class="elements section" aria-label="фотогалерея">
+      <ul class="elements__list">
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
 
-            <img
-              src="./images/karachevsk.jpg"
-              alt="Фотография Карачаево-Черкессия"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Карачаевск</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
-            <img
-              src="./images/elbrus.png"
-              alt="Фотография гора Эльбрус"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
-            <img
-              src="./images/dombai.png"
-              alt="Фотография Домбай"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Домбай</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
-            <img
-              src="./images/elbrus.png"
-              alt="Фотография гора Эльбрус"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
-            <img
-              src="./images/dombai.png"
-              alt="Фотография Домбай"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Домбай</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <button
-              type="button"
-              class="elements__button_remove"
-              aria-label="кнопка удаления изображения"
-            ></button>
-            <img
-              src="./images/karachevsk.jpg"
-              alt="Фотография Карачаево-Черкессия"
-              class="elements__image"
-            />
-            <div class="elements__likee">
-              <h2 class="elements__title">Карачаево-Черкессия</h2>
-              <button type="button" class="elements__image-likee"></button>
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
+          <img src="./images/karachevsk.jpg" alt="Фотография Карачаево-Черкессия" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Карачаевск</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+          <img src="./images/elbrus.png" alt="Фотография гора Эльбрус" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Гора Эльбрус</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+          <img src="./images/dombai.png" alt="Фотография Домбай" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Домбай</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+          <img src="./images/elbrus.png" alt="Фотография гора Эльбрус" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Гора Эльбрус</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+          <img src="./images/dombai.png" alt="Фотография Домбай" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Домбай</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+        <li class="elements__element">
+          <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+          <img src="./images/karachevsk.jpg" alt="Фотография Карачаево-Черкессия" class="elements__image" />
+          <div class="elements__likee">
+            <h2 class="elements__title">Карачаево-Черкессия</h2>
+            <button type="button" class="elements__image-likee"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
 
-    <footer class="footer section page__footer">
-      <p class="footer__copyright">&copy; 2021. Каракулин Алексей</p>
-    </footer>
+  <footer class="footer section page__footer">
+    <p class="footer__copyright">&copy; 2021. Каракулин Алексей</p>
+  </footer>
 
-    <div class="popup">
-      <div class="popup__container">
-        <button
-          type="button"
-          class="popup__form-button-exit"
-          aria-label="кнопка закрытия формы редактирования профиля"
-        ></button>
+  <!-- <div class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__form-button-exit"
+        aria-label="кнопка закрытия формы редактирования профиля"></button>
 
-        <form class="popup__form section" name="form-user-profile">
-          <h2 class="popup__form-title section-title">Редактировать профиль</h2>
-          <input
-            name="input-user-name"
-            placeholder="Введите имя"
-            type="text"
-            class="popup__form-input section-title popup__form-input_type_name"
-          />
-          <input
-            name="input-profession"
-            placeholder="Введите профессию"
-            type="text"
-            class="
+      <form class="popup__form section" name="form-user-profile">
+        <h2 class="popup__form-title section-title">Редактировать профиль</h2>
+        <input name="input-user-name" placeholder="Введите имя" type="text"
+          class="popup__form-input section-title popup__form-input_type_name" />
+        <input name="input-profession" placeholder="Введите профессию" type="text" class="
               popup__form-input
               section-title
               popup__form-input_type_profession
-            "
-          />
-          <button type="submit" class="popup__form-button-save">
-            Сохранить
-          </button>
-        </form>
-      </div>
+            " />
+        <button type="submit" class="popup__form-button-save">
+          Сохранить
+        </button>
+      </form>
     </div>
+  </div> -->
 
-    <script src="./scripts/script.js"></script>
-  </body>
+  <div class="popup popup_edit-profile">
+    <div class="popup__container popup__container_edit-profile">
+      <button type="button" class="popup__form-button-exit popup_edit-profile-button-exit"
+        aria-label="кнопка закрытия формы редактирования профиля"></button>
+
+      <form class="popup__form popup__form_edit-profile section" name="form-user-profile">
+
+        <h2 class="popup__form-title section-title">Редактировать профиль</h2>
+
+        <input name="input-user-name" placeholder="Введите имя" type="text"
+          class="popup__form-input section-title popup__form-input_type_name" />
+        <input name="input-profession" placeholder="Введите профессию" type="text"
+          class="popup__form-input section-title popup__form-input_type_profession" />
+
+        <button type="submit" class="popup__form-button-save">Сохранить</button>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_new-mesto">
+    <div class="popup__container popup__container_new-mesto">
+      <button type="button" class="popup__form-button-exit popup_new-mesto__form-button-exit"
+        aria-label="кнопка закрытия формы редактирования профиля"></button>
+
+      <form class="popup__form popup__form_new-mesto section" name="form-user-profile">
+
+        <h2 class="popup__form-title section-title">Новое место</h2>
+
+        <input name="input-user-name" placeholder="Название" type="text"
+          class="popup__form-input section-title popup__form-input-cart-name" />
+        <input name="input-profession" placeholder="Ссылка на картинку" type="text"
+          class="popup__form-input section-title popup__form-input-cart-link" />
+
+        <button type="submit" class="popup__form-button-save">Создать</button>
+
+      </form>
+    </div>
+  </div>
+
+  <template id="cart-template">
+    <li id = "elements__element" class = "elements__element">
+      <img src="" alt="" id="elements__image" class="elements__image"/>
+      <div class="elements__likee">
+        <h2 class="elements__title"></h2>
+        <button type="button" class="elements__image-likee"></button>
+      </div>
+    </li>
+  </template>
+
+  <script src="./scripts/script.js"></script>
+</body>
+
 </html>
