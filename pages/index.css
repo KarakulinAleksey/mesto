@@ -55,3 +55,7 @@
 @import url('../blocks/popup/__form-input/_type/popup__form-input_type_name.css');
 @import url('../blocks/popup/__form-input/_type/popup__form-input_type_profession.css');
 @import url('../blocks/popup/__container/popup__container.css');
+
+@import url('../blocks/popup/__caption/popup__caption.css');
+@import url('../blocks/popup/__figure/popup__figure.css');
+@import url('../blocks/popup/__image/popup__image.css');
