@@ -22,24 +22,24 @@
  let profileText = profileInfo.querySelector(".profile__text");
 
 //!--------------------------------------------------------------попап профиль------------------------------------------------------\\
-let popupEditProfile = page.querySelector(".popup_edit-profile"); //*попап с фоном
-let popupContainerEditProfile = popupEditProfile.querySelector(".popup__container_edit-profile"); //* белая форма заполнения
+let popupEditProfile = page.querySelector(".popup_type_edit-profile"); //*попап с фоном
+let popupContainerEditProfile = popupEditProfile.querySelector(".popup__container_type_edit-profile"); //* белая форма заполнения
 
-let popup_edit_profile_button_exit = popupEditProfile.querySelector(".popup_edit-profile-button-exit"); //* кнопка закрытия попапа
+let popup_edit_profile_button_exit = popupEditProfile.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
 let popupFormEditProfile = popupContainerEditProfile.querySelector(".popup__form_edit-profile"); //* для отправки данных (тег form)
 
 let popupFormInputUserName = popupFormEditProfile.querySelector(".popup__form-input_type_name"); //* инпут с именем
 let popupFormInputProfession = popupFormEditProfile.querySelector(".popup__form-input_type_profession"); //* инпут с профессией
 
 //!--------------------------------------------------------------попап новое место--------------------------------------------------\\
-let popupNewMesto = page.querySelector(".popup_new-mesto"); //*попап с фоном
-let popupContainerNewMesto = popupNewMesto.querySelector(".popup__container_new-mesto"); //* белая форма заполнения
+let popupNewMesto = page.querySelector(".popup_type_new-mesto"); //*попап с фоном
+let popupContainerNewMesto = popupNewMesto.querySelector(".popup__container_type_new-mesto"); //* белая форма заполнения
 
-let popupNewMestoButton_Exit = popupContainerNewMesto.querySelector(".popup_new-mesto__form-button-exit"); //* кнопка закрытия попапа
-let popupFormNewMesto = popupContainerNewMesto.querySelector(".popup__form_new-mesto"); //* для отправки данных (тег form)
+let popupNewMestoButton_Exit = popupContainerNewMesto.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
+let popupFormNewMesto = popupContainerNewMesto.querySelector(".popup__form_type_new-mesto"); //* для отправки данных (тег form)
 
-let popupFormInputCartName = popupFormNewMesto.querySelector(".popup__form-input-cart-name"); //* инпут с именем карты
-let popupFormInputCartLink = popupFormNewMesto.querySelector(".popup__form-input-cart-link"); //* инпут с ссылкой на изображение
+let popupFormInputCartName = popupFormNewMesto.querySelector(".popup__form-input_type_cart-name"); //* инпут с именем карты
+let popupFormInputCartLink = popupFormNewMesto.querySelector(".popup__form-input_type_cart-link"); //* инпут с ссылкой на изображение
 //!----------------------------------------------------commit-----------------------------
 
  //*--------------функции попапа профиля---------------\\
@@ -88,7 +88,7 @@ let popupFormInputCartLink = popupFormNewMesto.querySelector(".popup__form-input
    evt.preventDefault();
 
    let cart_temlate = page.querySelector("#cart-template").content;
-   let elements = cart_temlate.querySelector('#elements__element').cloneNode(true);
+   let elements = cart_temlate.querySelector('.elements__element').cloneNode(true);
 
    elements.querySelector('.elements__image').src = popupFormInputCartLink.value;
    elements.querySelector('.elements__title').textContent = popupFormInputCartName.value;

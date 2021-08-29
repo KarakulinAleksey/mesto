@@ -115,52 +115,60 @@
     </div>
   </div> -->
 
-  <div class="popup popup_edit-profile">
-    <div class="popup__container popup__container_edit-profile">
-      <button type="button" class="popup__form-button-exit popup_edit-profile-button-exit"
+  <div class="popup popup_type_edit-profile">
+    <div class="popup__container popup__container_type_edit-profile">
+      <button type="button" class="popup__form-button-exit"
         aria-label="кнопка закрытия формы редактирования профиля"></button>
 
       <form class="popup__form popup__form_edit-profile section" name="form-user-profile">
-
         <h2 class="popup__form-title section-title">Редактировать профиль</h2>
 
         <input name="input-user-name" placeholder="Введите имя" type="text"
           class="popup__form-input section-title popup__form-input_type_name" />
-        <input name="input-profession" placeholder="Введите профессию" type="text"
-          class="popup__form-input section-title popup__form-input_type_profession" />
+        <input name="input-profession" placeholder="Введите профессию" type="text" class="
+              popup__form-input
+              section-title
+              popup__form-input_type_profession
+            " />
 
-        <button type="submit" class="popup__form-button-save">Сохранить</button>
-
+        <button type="submit" class="popup__form-button-save">
+          Сохранить
+        </button>
       </form>
     </div>
   </div>
 
-  <div class="popup popup_new-mesto">
-    <div class="popup__container popup__container_new-mesto">
-      <button type="button" class="popup__form-button-exit popup_new-mesto__form-button-exit"
+  <div class="popup popup_type_new-mesto">
+    <div class="popup__container popup__container_type_new-mesto">
+      <button type="button" class="popup__form-button-exit"
         aria-label="кнопка закрытия формы редактирования профиля"></button>
 
-      <form class="popup__form popup__form_new-mesto section" name="form-user-profile">
-
+      <form class="popup__form popup__form_type_new-mesto section" name="form-user-profile">
         <h2 class="popup__form-title section-title">Новое место</h2>
 
-        <input name="input-user-name" placeholder="Название" type="text"
-          class="popup__form-input section-title popup__form-input-cart-name" />
-        <input name="input-profession" placeholder="Ссылка на картинку" type="text"
-          class="popup__form-input section-title popup__form-input-cart-link" />
+        <input name="input-user-name" placeholder="Название" type="text" class="
+              popup__form-input
+              section-title
+              popup__form-input_type_cart-name
+            " />
+        <input name="input-profession" placeholder="Ссылка на картинку" type="text" class="
+              popup__form-input
+              section-title
+              popup__form-input_type_cart-link
+            " />
 
         <button type="submit" class="popup__form-button-save">Создать</button>
-
       </form>
     </div>
   </div>
 
   <template id="cart-template">
-    <li id = "elements__element" class = "elements__element">
-      <img src="" alt="" id="elements__image" class="elements__image"/>
+    <li class="elements__element">
+      <button type="button" class="elements__button_remove" aria-label="кнопка удаления изображения"></button>
+      <img src="" alt="" id="elements__image" class="elements__image" />
       <div class="elements__likee">
         <h2 class="elements__title"></h2>
-        <button type="button" class="elements__image-likee"></button>
+        <button type="button" class="elements__image-likee new-like"></button>
       </div>
     </li>
   </template>
