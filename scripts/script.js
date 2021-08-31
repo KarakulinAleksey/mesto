@@ -4,51 +4,50 @@
  * @param {number} decimal
  */
 
-let page = document.querySelector(".page");
-let content = page.querySelector(".content");
-let elementsList = page.querySelector(".elements__list");
+const page = document.querySelector(".page");
+const content = page.querySelector(".content");
+const elementsList = page.querySelector(".elements__list");
 
-let profile = content.querySelector(".profile");
-let profileFigure = profile.querySelector(".profile__figure");
+const profile = content.querySelector(".profile");
+const profileFigure = profile.querySelector(".profile__figure");
 
 //!--------------------------------------------------------------кнопки прифиля-----------------------------------------------------\\
-let profileEditButton = profileFigure.querySelector(".profile__edit-button");
-let profileAddButton = profile.querySelector(".profile__add-button");
+const profileEditButton = profileFigure.querySelector(".profile__edit-button");
+const profileAddButton = profile.querySelector(".profile__add-button");
 
 //!--------------------------------------------------------------текст профиля------------------------------------------------------\\
-let profileInfo = profileFigure.querySelector(".profile__info");
-let profileTitle = profileInfo.querySelector(".profile__title");
-let profileText = profileInfo.querySelector(".profile__text");
+const profileInfo = profileFigure.querySelector(".profile__info");
+const profileTitle = profileInfo.querySelector(".profile__title");
+const profileText = profileInfo.querySelector(".profile__text");
 
 //!--------------------------------------------------------------попап профиль------------------------------------------------------\\
-let popupEditProfile = page.querySelector(".popup_type_edit-profile"); //*попап с фоном
-let popupContainerEditProfile = popupEditProfile.querySelector(".popup__container_type_edit-profile"); //* белая форма заполнения
+const popupEditProfile = page.querySelector(".popup_type_edit-profile"); //*попап с фоном
+const popupContainerEditProfile = popupEditProfile.querySelector(".popup__container_type_edit-profile"); //* белая форма заполнения
 
-let popup_edit_profile_button_exit = popupEditProfile.querySelector( ".popup__form-button-exit"); //* кнопка закрытия попапа
-let popupFormEditProfile = popupContainerEditProfile.querySelector(".popup__form_edit-profile"); //* для отправки данных (тег form)
+const popupEditProfileButtonExit = popupEditProfile.querySelector( ".popup__form-button-exit"); //* кнопка закрытия попапа
+const popupFormEditProfile = popupContainerEditProfile.querySelector(".popup__form_edit-profile"); //* для отправки данных (тег form)
 
-let popupFormInputUserName = popupFormEditProfile.querySelector(".popup__form-input_type_name"); //* инпут с именем
-let popupFormInputProfession = popupFormEditProfile.querySelector(".popup__form-input_type_profession"); //* инпут с профессией
+const popupFormInputUserName = popupFormEditProfile.querySelector(".popup__form-input_type_name"); //* инпут с именем
+const popupFormInputProfession = popupFormEditProfile.querySelector(".popup__form-input_type_profession"); //* инпут с профессией
 
 //!--------------------------------------------------------------попап новое место--------------------------------------------------\\
-let popupNewMesto = page.querySelector(".popup_type_new-mesto"); //*попап с фоном
-let popupContainerNewMesto = popupNewMesto.querySelector(".popup__container_type_new-mesto"); //* белая форма заполнения
+const popupNewMesto = page.querySelector(".popup_type_new-mesto"); //*попап с фоном
+const popupContainerNewMesto = popupNewMesto.querySelector(".popup__container_type_new-mesto"); //* белая форма заполнения
 
-let popupNewMestoButton_Exit = popupContainerNewMesto.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
-let popupFormNewMesto = popupContainerNewMesto.querySelector(".popup__form_type_new-mesto"); //* для отправки данных (тег form)
+const popupNewMestoButtonExit = popupContainerNewMesto.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
+const popupFormNewMesto = popupContainerNewMesto.querySelector(".popup__form_type_new-mesto"); //* для отправки данных (тег form)
 
-let popupFormInputCartName = popupFormNewMesto.querySelector(".popup__form-input_type_cart-name"); //* инпут с именем карты
-let popupFormInputCartLink = popupFormNewMesto.querySelector(".popup__form-input_type_cart-link"); //* инпут с ссылкой на изображение
+const popupFormInputCartName = popupFormNewMesto.querySelector(".popup__form-input_type_cart-name"); //* инпут с именем карты
+const popupFormInputCartLink = popupFormNewMesto.querySelector(".popup__form-input_type_cart-link"); //* инпут с ссылкой на изображение
 
 //!--------------------------------------------------------------попап просмотр изображения--------------------------------------------------\\
-let popupTypeViewer = page.querySelector(".popup_type_viewer"); //* попап с фоном
-let popupTypeViewerButton = popupTypeViewer.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
-
-let popupTypeViewerImage = popupTypeViewer.querySelector(".popup__image"); //* картинка внутри попапа
-let elementsImage = elementsList.querySelectorAll(".elements__image"); //* изображение для открытия попапа
-//console.log(elementsImage);
-let popupCaption = popupTypeViewer.querySelector(".popup__caption"); //* подпись картинки
-let cartTitle = elementsList.querySelectorAll(".elements__title") //* название картинки
+const popupTypeViewer = page.querySelector(".popup_type_viewer"); //* попап с фоном
+const popupContainerTypeViewer = popupTypeViewer.querySelector(".popup__container_type_viewer");
+const popupTypeViewerButton = popupTypeViewer.querySelector(".popup__form-button-exit"); //* кнопка закрытия попапа
+const popupTypeViewerImage = popupTypeViewer.querySelector(".popup__image"); //* картинка внутри попапа
+const elementsImage = elementsList.querySelectorAll(".elements__image"); //* изображение для открытия попапа
+const popupCaption = popupTypeViewer.querySelector(".popup__caption"); //* подпись картинки
+const cartTitle = elementsList.querySelectorAll(".elements__title") //* название картинки
 const arrCartTitle = Array.from(cartTitle);
 
 //?--------------функции попапа профиля---------------\\
@@ -80,17 +79,27 @@ function popupTypeViewerClose() {
 
 //?---------------открытие-зактие попапа профиля------------------------------------\\
 profileEditButton.addEventListener("click", popupEditProfileShow);
-popup_edit_profile_button_exit.addEventListener(
-  "click",
-  popupEditProfileClose
-);
-//popupEditProfile.addEventListener('click',popupEditProfileClose);
+popupEditProfileButtonExit.addEventListener("click",popupEditProfileClose);
+
+popupEditProfile.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
+const evtTarget = evt.target;
+// console.log(popupFormEditProfile.contains(evtTarget));
+if (!popupFormEditProfile.contains(evtTarget)){
+  popupEditProfileClose();
+}
+});
 
 
 //?---------------открытие-зактие попапа новое место-----------------------------------\\
 profileAddButton.addEventListener("click", popupNewMestoShow);
-popupNewMestoButton_Exit.addEventListener("click", popupNewMestoClose);
-//popupNewMesto.addEventListener('click', popupNewMestoClose)
+popupNewMestoButtonExit.addEventListener("click", popupNewMestoClose);
+
+popupNewMesto.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
+  const evtTarget = evt.target;
+  if (!popupFormNewMesto.contains(evtTarget)){
+    popupNewMestoClose();
+  }
+  });
 
 //?----------------------------------открытие - закрытие попапа просмотра изображения  --------------------------------\\
 elementsImage.forEach(function(item, index){
@@ -104,6 +113,12 @@ elementsImage.forEach(function(item, index){
 });
 popupTypeViewerButton.addEventListener("click", popupTypeViewerClose);
 
+popupTypeViewer.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
+  const evtTarget = evt.target;
+  if (!popupContainerTypeViewer.contains(evtTarget)){
+    popupTypeViewerClose();
+  }
+  });
 
 //?--------------отправка формы попапа профиля-----------------------------------\\
 popupFormEditProfile.addEventListener("submit", formSubmitHandler);
@@ -130,7 +145,6 @@ function formSubmitNewMesto(evt) {
 
   cartImegeTemp.src = popupFormInputCartLink.value;
   cartTitleTemp.textContent = popupFormInputCartName.value;
-  //popupFormInputCartLink.remove();
 
   elementsList.prepend(element);
 
@@ -190,7 +204,7 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-//const elementsList = content.querySelector(".elements__list");
+
 const elementsListImage = elementsList.querySelectorAll(".elements__image");
 elementsListImage.forEach(function (item, index) {
   item.src = initialCards[index].link;
