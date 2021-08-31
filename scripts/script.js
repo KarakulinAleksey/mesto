@@ -156,8 +156,8 @@ function formSubmitNewMesto(evt) {
   });
 
   //*--------------событие кнопки удаления-----------------------------------\\
-  const elementButtonRemove = element.querySelector(".elements__button_remove");
-  console.log(elementButtonRemove);
+  const elementButtonRemove = element.querySelector(".elements__button-remove");
+  // console.log(elementButtonRemove);
   elementButtonRemove.addEventListener("click", function (evt) {
     let evtTarget = evt.target;
     element.remove();
@@ -168,7 +168,7 @@ function formSubmitNewMesto(evt) {
     const evtTarget = evt.target;
     popupTypeViewerImage.src = evtTarget.src;
     popupCaption.textContent = cartTitleTemp.textContent;
-    console.log (evtTarget);
+    // console.log (evtTarget);
     evtTarget.classList.toggle("elements__image-like_active");
     popupTypeViewer.classList.add("popup_show");
 
@@ -218,7 +218,7 @@ elementsListTitle.forEach(function (item, index) {
 let buttonElementsImageLikee = elementsList.querySelectorAll(
   ".elements__image-likee"
 );
-console.log(buttonElementsImageLikee);
+// console.log(buttonElementsImageLikee);
 
 buttonElementsImageLikee.forEach(function (item) {
   item.addEventListener("click", function (evt) {
@@ -229,13 +229,11 @@ buttonElementsImageLikee.forEach(function (item) {
 });
 
 //?----------------------------------удаляем карточки  --------------------------------\\
-let elementButtonRemove = elementsList.querySelectorAll(
-  ".elements__button_remove"
-);
+let elementButtonRemoveArr = elementsList.querySelectorAll(".elements__button-remove");
 
-console.log(elementButtonRemove);
+// console.log(elementButtonRemove);
 
-elementButtonRemove.forEach(function (item) {
+elementButtonRemoveArr.forEach(function (item) {
   item.addEventListener("click", function (evt) {
     const evtTarget = evt.target;
     evtTarget.parentElement.remove();
