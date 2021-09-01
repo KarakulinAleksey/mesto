@@ -59,32 +59,35 @@ function popupClose (popup){
   popup.classList.remove("popup_show");
 }
 
+//----------------функция закрытия попапа при нажатии зв пределами формы попапа-------\\
 
-//?---------------открытие-зактие попапа профиля------------------------------------\\
-profileEditButton.addEventListener("click", function(){popupShow(popupEditProfile)});
+function closePopup(namePopup, formPopup){
+  namePopup.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
+    const evtTarget = evt.target;
+    // @ts-ignore
+    if (!formPopup.contains(evtTarget)){
+      popupClose(namePopup);
+    }
+  });
+}
+
+
+//?---------------открытие-закрытие попапа профиля------------------------------------\\
+profileEditButton.addEventListener("click", function(){
+  popupShow(popupEditProfile);
+  popupFormInputUserName.value = profileTitle.textContent;
+  popupFormInputProfession.value = profileText.textContent;
+});
 popupEditProfileButtonExit.addEventListener("click", function(){popupClose(popupEditProfile)});
 
-popupEditProfile.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
-  const evtTarget = evt.target;
-  // @ts-ignore
-  if (!popupFormEditProfile.contains(evtTarget)){
-    popupClose(popupEditProfile);
-  }
-});
+closePopup(popupEditProfile,popupFormEditProfile);
 
 
-//?---------------открытие-зактие попапа новое место-----------------------------------\\
+//?---------------открытие-закрытие попапа новое место-----------------------------------\\
 profileAddButton.addEventListener("click", function(){popupShow(popupNewMesto)});
 popupNewMestoButtonExit.addEventListener("click", function(){popupClose(popupNewMesto)});
 
-popupNewMesto.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
-  const evtTarget = evt.target;
-  // @ts-ignore
-  if (!popupFormNewMesto.contains(evtTarget)){
-    popupClose(popupNewMesto);
-  }
-});
-
+closePopup(popupNewMesto,popupFormNewMesto);
 
 //?----------------------------------открытие-закрытие попапа просмотра изображения  --------------------------------\\
 elementsImage.forEach(function(item, index){
@@ -97,14 +100,7 @@ elementsImage.forEach(function(item, index){
 });
 popupTypeViewerButton.addEventListener("click", function(){popupClose(popupTypeViewer)});
 
-popupTypeViewer.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
-  const evtTarget = evt.target;
-  // @ts-ignore
-  if (!popupContainerTypeViewer.contains(evtTarget)){
-    popupClose(popupTypeViewer);
-  }
-});
-
+closePopup(popupTypeViewer,popupContainerTypeViewer);
 
 //?--------------отправка формы попапа профиля-----------------------------------\\
 popupFormEditProfile.addEventListener("submit", formSubmitHandler);
@@ -113,28 +109,39 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupFormInputUserName.value;
   profileText.textContent = popupFormInputProfession.value;
-  popupFormInputUserName.value = profileTitle.textContent;
-  popupFormInputProfession.value = profileText.textContent;
   popupClose(popupEditProfile);
 }
 
 //?--------------отправка формы попапа новое место-----------------------------------\\
 popupFormNewMesto.addEventListener("submit", formSubmitNewMesto);
 
+function formSubmitNewMesto(evt) {
+  evt.preventDefault();
+  let cartLink = popupFormInputCartLink.value;
+  let cartName = popupFormInputCartName.value;
+
+  renderCard(cartName, cartLink, elementsList);
+
+  popupFormInputCartLink.value = "";
+  popupFormInputCartName.value = "";
+  popupClose(popupNewMesto);
+}
+
+//---------------------функция создания новой карточки------------------------\\\
 function createCart(name, link){
   const cartTemlate = page.querySelector("#cart-template").content;
   const element = cartTemlate.querySelector(".elements__element").cloneNode(true);
-  const cartImegeTemp = element.querySelector(".elements__image");
+  const cartImageTemp = element.querySelector(".elements__image");
   const cartTitleTemp = element.querySelector(".elements__title");
 
-  cartImegeTemp.src = link;
-  cartImegeTemp.alt = name;
+  cartImageTemp.src = link;
+  cartImageTemp.alt = name;
   cartTitleTemp.textContent = name;
 
   //*--------------добавление событие кнопки likee-----------------------------------\\
   const newLike = element.querySelector(".elements__image-likee");
   newLike.addEventListener("click", function (evt) {
-    let evtTarget = evt.target;
+    const evtTarget = evt.target;
     evtTarget.classList.toggle("elements__image-like_active");
   });
 
@@ -145,7 +152,7 @@ function createCart(name, link){
   });
 
   //*-----------добавление событие новой картинки-----------------------------\\
-  cartImegeTemp.addEventListener("click", function(evt){
+  cartImageTemp.addEventListener("click", function(evt){
     const evtTarget = evt.target;
     popupTypeViewerImage.src = evtTarget.src;
     popupCaption.textContent = cartTitleTemp.textContent;
@@ -156,19 +163,11 @@ function createCart(name, link){
   return element;
 }
 
-function formSubmitNewMesto(evt) {
-  evt.preventDefault();
-  let cartLink = popupFormInputCartLink.value;
-  let cartName = popupFormInputCartName.value;
-
-  let newCart = createCart(cartName, cartLink);
-
-  elementsList.prepend(newCart);
-
-  popupFormInputCartLink.value = "";
-  popupFormInputCartName.value = "";
-  popupClose(popupNewMesto);
+//-------------------функция добавления карточки в контейнер-------------------------------\\
+function renderCard(nameTitle, linkImg, conteiner){
+  conteiner.prepend(createCart(nameTitle, linkImg));
 }
+
 
 //?--------------------------------------заполняю секцию elements карточками------------------------------------------\\
 const initialCards = [
@@ -199,8 +198,7 @@ const initialCards = [
 ];
 
 for(let i = 0; i < initialCards.length; i++){
-  const newCart = createCart(initialCards[i].name, initialCards[i].link);
-  elementsList.prepend(newCart);
+  renderCard(initialCards[i].name, initialCards[i].link, elementsList);
 }
 
 
