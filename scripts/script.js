@@ -90,16 +90,7 @@ popupNewMestoButtonExit.addEventListener("click", function(){popupClose(popupNew
 closePopup(popupNewMesto,popupFormNewMesto);
 
 //?----------------------------------открытие-закрытие попапа просмотра изображения  --------------------------------\\
-elementsImage.forEach(function(item, index){
-  item.addEventListener('click', function(evt){
-    const evtTarget = evt.target;
-    popupTypeViewerImage.src = evtTarget.src;
-    popupCaption.textContent = arrCartTitle[index].textContent;
-    popupShow(popupTypeViewer);
-  });
-});
 popupTypeViewerButton.addEventListener("click", function(){popupClose(popupTypeViewer)});
-
 closePopup(popupTypeViewer,popupContainerTypeViewer);
 
 //?--------------отправка формы попапа профиля-----------------------------------\\
@@ -117,13 +108,13 @@ popupFormNewMesto.addEventListener("submit", formSubmitNewMesto);
 
 function formSubmitNewMesto(evt) {
   evt.preventDefault();
-  let cartLink = popupFormInputCartLink.value;
-  let cartName = popupFormInputCartName.value;
+  const cartLink = popupFormInputCartLink.value;
+  const cartName = popupFormInputCartName.value;
 
   renderCard(cartName, cartLink, elementsList);
 
-  popupFormInputCartLink.value = "";
-  popupFormInputCartName.value = "";
+  evt.target.reset();
+
   popupClose(popupNewMesto);
 }
 
@@ -151,12 +142,12 @@ function createCart(name, link){
     element.remove();
   });
 
-  //*-----------добавление событие новой картинки-----------------------------\\
+  //*-----------добавление события новой картинки-----------------------------\\
   cartImageTemp.addEventListener("click", function(evt){
     const evtTarget = evt.target;
     popupTypeViewerImage.src = evtTarget.src;
     popupCaption.textContent = cartTitleTemp.textContent;
-    evtTarget.classList.toggle("elements__image-like_active");
+    popupTypeViewerImage.alt = evtTarget.alt;
     popupShow(popupTypeViewer);
   });
 
@@ -197,9 +188,6 @@ const initialCards = [
   }
 ];
 
-for(let i = 0; i < initialCards.length; i++){
-  renderCard(initialCards[i].name, initialCards[i].link, elementsList);
-}
 
-
+initialCards.forEach(function(item){renderCard(item.name, item.link, elementsList)});
 
