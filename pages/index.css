@@ -55,6 +55,13 @@
 @import url('../blocks/popup/__form-input/_type/popup__form-input_type_name.css');
 @import url('../blocks/popup/__form-input/_type/popup__form-input_type_profession.css');
 @import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__form-input/_status/popup__form-input_status-error.css');
+@import url('../blocks/popup/__input-error/popup__input-error.css');
+@import url('../blocks/popup/__input-error/_type/popup__input-error_type_name.css');
+@import url('../blocks/popup/__input-error/_type/popup__input-error_type_profession.css');
+@import url('../blocks/popup/__input-error/_type/popup__input-error_type_cart-name.css');
+@import url('../blocks/popup/__input-error/_type/popup__input-error_type_cart-link.css');
+@import url('../blocks/popup/__input-error/_active/popup__input-error_active.css');
 
 @import url('../blocks/popup/__caption/popup__caption.css');
 @import url('../blocks/popup/__figure/popup__figure.css');

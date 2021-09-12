@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @param {number} from
  * @param {number} to
