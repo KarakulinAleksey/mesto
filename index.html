@@ -51,15 +51,14 @@
 
       <form class="popup__form popup__form_edit-profile section" name="form-user-profile" novalidate>
         <h2 class="popup__form-title section-title">Редактировать профиль</h2>
-
-        <!-- <input name="input-user-name" placeholder="Введите имя" type="text" class="popup__form-input section-title popup__form-input_type_name"/> -->
-        <!-- <input name="input-profession" placeholder="Введите профессию" type="text" class="popup__form-input section-title popup__form-input_type_profession"/> -->
-        <input name="input-user-name" placeholder="Введите имя" type="text" class="popup__form-input section-title popup__form-input_type_name" minlength="2" maxlength="40" required/>
-        <span class="name-input-error">Необходимо заполнить данное поле</span>
-
-        <input name="input-profession" placeholder="Введите профессию" type="text" class="popup__form-input section-title popup__form-input_type_profession" minlength="2" maxlength="200" required/>
-        <!-- <span class="popup__input-error popup__input-error_type_name section-title">Необходимо заполнить данное поле</span> -->
-
+          <div class="popup__container-input">
+            <input name="name" placeholder="Введите имя" type="text" class="popup__form-input section-title popup__form-input_type_name" minlength="2" maxlength="40" required/>
+            <span class="name-input-error"></span>
+          </div>
+          <div class='popup__container-input'>
+            <input name="profession" placeholder="Введите профессию" type="text" class="popup__form-input section-title popup__form-input_type_profession" minlength="2" maxlength="200" required/>
+            <span class="profession-input-error"></span>
+          </div>
         <button type="submit" class="popup__form-button-save">Сохранить</button>
       </form>
     </div>
@@ -70,14 +69,16 @@
       <button type="button" class="popup__form-button-exit"
         aria-label="кнопка закрытия формы редактирования профиля"></button>
 
-      <form class="popup__form popup__form_type_new-mesto section" name="form-user-profile" novalidate>
+      <form name="form-user-profile" class="popup__form popup__form_type_new-mesto section" novalidate>
         <h2 class="popup__form-title section-title">Новое место</h2>
-
-        <!-- <input name="input-name-image" placeholder="Название" type="text" class="popup__form-input section-title popup__form-input_type_cart-name"/> -->
-        <!-- <input name="input-link-image" placeholder="Ссылка на картинку" type="url" class=" popup__form-input section-title popup__form-input_type_cart-link"/> -->
-        <input name="input-name-image" placeholder="Название" type="text" class="popup__form-input section-title popup__form-input_type_cart-name" minlength="2" maxlength="30" required/>
-        <input name="input-link-image" placeholder="Ссылка на картинку" type="url" class=" popup__form-input section-title popup__form-input_type_cart-link" required/>
-
+          <div class='popup__container-input'>
+            <input name="name-image" placeholder="Название" type="text" class="popup__form-input section-title popup__form-input_type_cart-name" minlength="2" maxlength="30" required/>
+            <span class="name-image-input-error"></span>
+          </div>
+          <div class='popup__container-input'>
+            <input name="link-image" placeholder="Ссылка на картинку" type="url" class=" popup__form-input section-title popup__form-input_type_cart-link" required/>
+            <span class="link-image-input-error"></span>
+          </div>
         <button type="submit" class="popup__form-button-save">Создать</button>
       </form>
     </div>

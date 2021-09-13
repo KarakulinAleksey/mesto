@@ -1,67 +1,77 @@
 // @ts-nocheck
-//переменная формы "редактирования профиля"
-const formElement = document.querySelector('.popup__form_edit-profile');
-// console.log(formElement);
+//функция изменения цвета input и вывода текста сообщения об ошибке
+const showInputError = function(formElement, inputElement, errorMessage, inputErrorClass, errorClass){
+  const nameInputError = formElement.querySelector(`.${inputElement.name}-input-error`);
+  inputElement.classList.add(inputErrorClass);
+  nameInputError.textContent = errorMessage;
+  nameInputError.classList.add(errorClass);
+}
 
-//переменная инпута-ИМЯ "редактирования профиля"
-const formInput = formElement.querySelector('.popup__form-input_type_name');
-// const formInput = formElement.querySelectorAll('.popup__form-input');
-// console.log(formInput);
-
-//функция добавления класса "красная линия"
-const showInputError = function(element){
-  element.classList.add('popup__form-input_status-error');
+const hideInputError = function(formElement, inputElement, inputErrorClass, errorClass){
+const nameInputError = formElement.querySelector(`.${inputElement.name}-input-error`);
+inputElement.classList.remove(inputErrorClass);
+nameInputError.classList.remove(errorClass);
+nameInputError.textContent = "";
+}
+//функция проверки на валидность, если не валидны выводим сообщения об ошибке
+const isValid = function(formElement, inputElement, inputErrorClass, errorClass){
+  if (!inputElement.validity.valid){
+    showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+  }
+  else
+  {
+    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
+  }
+}
+//функция проверки на валидность элементов формы
+const hasIvalidInput = function(inputList){
+  return inputList.some(function(inputElement){
+    return !inputElement.validity.valid;
+  });
 };
-//функция удаления класса "красная линия"
-const hideInputError = function(element){
-  element.classList.remove('popup__form-input_status-error');
-};
-//переменная спан инпута ИМЯ
-const nameInputError = formElement.querySelector('.name-input-error');
-//console.log(nameInputError);
-
-//функция добавления класса вывести текст ошибки инпута ИМЯ
-const shownameInputError = function(element){
-  element.classList.add('popup__input-error');
-};
-//функция удаления класса вывести текст ошибки инпута ИМЯ
-const hidenameInputError = function(element){
-  element.classList.remove('popup__input-error');
-};
-
-const enableValidation = function(){
-  if (!formInput.validity.valid){
-    //console.log(formInput.validity.valid);
-    showInputError(formInput);
-    shownameInputError(nameInputError)
-  }else{
-    hideInputError(formInput);
-    hidenameInputError(nameInputError);
-    //console.log(formInput.validity.valid);
+//функция дизактивации кнопки отправить
+const toggleButtonState = function(inputList, buttonElement, inactiveButtonClass){
+  if(hasIvalidInput(inputList)){
+    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
+  }
+  else
+  {
+    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
-
-formElement.addEventListener('submit',function(evt){
-  evt.preventDefault();
-});
-
-formInput.addEventListener('input',enableValidation);
-
-
-
-
-
-
-
+//функция добавления слушателя input
+const setEventListener = function(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass){
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  inputList.forEach(function(inputElement){
+    inputElement.addEventListener('input',function(){
+      isValid (formElement, inputElement, inputErrorClass, errorClass);
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+    });
+  });
+};
+//функция добавления слушателя form
+const enableValidation = function({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}){
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach(function(formElement){
+    formElement.addEventListener('submit',function(evt){
+      evt.preventDefault();
+    });
+    setEventListener(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);
+  });
+};
 
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-/*enableValidation({
+enableValidation({
   formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}); */
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__form-button-save',
+  inactiveButtonClass: 'popup__form-button-save_type_unable',
+  inputErrorClass: 'popup__form-input_status-error',
+  errorClass: 'popup__input-error'
+});

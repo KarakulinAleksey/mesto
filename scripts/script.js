@@ -51,13 +51,18 @@ const popupCaption = popupTypeViewer.querySelector(".popup__caption"); //* по�
 const cartTitle = elementsList.querySelectorAll(".elements__title") //* название картинки
 const arrCartTitle = Array.from(cartTitle);
 
-
 //?--------------функции открытия-закрытия---------------\\
 function popupShow(popup) {
   popup.classList.add("popup_show");
+  document.addEventListener('keydown', function(evt){
+      if (evt.key == "Escape") {
+        popupClose (popup);
+      };
+  });
 }
 function popupClose (popup){
   popup.classList.remove("popup_show");
+  document.removeEventListener('keydown', function(evt){});
 }
 
 //----------------функция закрытия попапа при нажатии зв пределами формы попапа-------\\
@@ -65,13 +70,11 @@ function popupClose (popup){
 function closePopup(namePopup, formPopup){
   namePopup.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
     const evtTarget = evt.target;
-    // @ts-ignore
     if (!formPopup.contains(evtTarget)){
       popupClose(namePopup);
     }
   });
 }
-
 
 //?---------------открытие-закрытие попапа профиля------------------------------------\\
 profileEditButton.addEventListener("click", function(){
