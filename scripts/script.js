@@ -52,50 +52,56 @@ const cartTitle = elementsList.querySelectorAll(".elements__title") //* назв
 const arrCartTitle = Array.from(cartTitle);
 
 //?--------------функции открытия-закрытия---------------\\
-function popupShow(popup) {
+function showPopup(popup) {
   popup.classList.add("popup_show");
-  document.addEventListener('keydown', function(evt){
-      if (evt.key == "Escape") {
-        popupClose (popup);
-      };
-  });
+  document.addEventListener('keydown', function(evt){handleESC(evt, popup);});
 }
-function popupClose (popup){
+
+function closePopup (popup){
   popup.classList.remove("popup_show");
-  document.removeEventListener('keydown', function(evt){});
+  document.removeEventListener('keydown', function(evt){handleESC(evt, popup);});
 }
 
-//----------------функция закрытия попапа при нажатии зв пределами формы попапа-------\\
 
-function closePopup(namePopup, formPopup){
+//----------------функция закрытия попапа при нажатии на esc-------\\
+
+function handleESC(evt, popup) {
+  if (evt.key === 'Escape') {
+    closePopup(popup);
+  };
+}
+
+//----------------функция закрытия попапа при нажатии за пределами формы попапа-------\\
+
+function setClosePopupEventListener(namePopup, formPopup){
   namePopup.addEventListener('click', function(evt){   //закрытие попапа при клике за пределами формы
     const evtTarget = evt.target;
     if (!formPopup.contains(evtTarget)){
-      popupClose(namePopup);
+      closePopup(namePopup);
     }
   });
 }
 
 //?---------------открытие-закрытие попапа профиля------------------------------------\\
 profileEditButton.addEventListener("click", function(){
-  popupShow(popupEditProfile);
+  showPopup(popupEditProfile);
   popupFormInputUserName.value = profileTitle.textContent;
   popupFormInputProfession.value = profileText.textContent;
 });
-popupEditProfileButtonExit.addEventListener("click", function(){popupClose(popupEditProfile)});
+popupEditProfileButtonExit.addEventListener("click", function(){closePopup(popupEditProfile)});
 
-closePopup(popupEditProfile,popupFormEditProfile);
+setClosePopupEventListener(popupEditProfile,popupFormEditProfile);
 
 
 //?---------------открытие-закрытие попапа новое место-----------------------------------\\
-profileAddButton.addEventListener("click", function(){popupShow(popupNewMesto)});
-popupNewMestoButtonExit.addEventListener("click", function(){popupClose(popupNewMesto)});
+profileAddButton.addEventListener("click", function(){showPopup(popupNewMesto)});
+popupNewMestoButtonExit.addEventListener("click", function(){closePopup(popupNewMesto)});
 
-closePopup(popupNewMesto,popupFormNewMesto);
+setClosePopupEventListener(popupNewMesto,popupFormNewMesto);
 
 //?----------------------------------открытие-закрытие попапа просмотра изображения  --------------------------------\\
-popupTypeViewerButton.addEventListener("click", function(){popupClose(popupTypeViewer)});
-closePopup(popupTypeViewer,popupContainerTypeViewer);
+popupTypeViewerButton.addEventListener("click", function(){closePopup(popupTypeViewer)});
+setClosePopupEventListener(popupTypeViewer,popupContainerTypeViewer);
 
 //?--------------отправка формы попапа профиля-----------------------------------\\
 popupFormEditProfile.addEventListener("submit", formSubmitHandler);
@@ -104,7 +110,7 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupFormInputUserName.value;
   profileText.textContent = popupFormInputProfession.value;
-  popupClose(popupEditProfile);
+  closePopup(popupEditProfile);
 }
 
 //?--------------отправка формы попапа новое место-----------------------------------\\
@@ -119,7 +125,10 @@ function formSubmitNewMesto(evt) {
 
   evt.target.reset();
 
-  popupClose(popupNewMesto);
+
+  enableValidation(parameterObject);
+
+  closePopup(popupNewMesto);
 }
 
 //---------------------функция создания новой карточки------------------------\\\
@@ -152,7 +161,7 @@ function createCart(name, link){
     popupTypeViewerImage.src = evtTarget.src;
     popupCaption.textContent = cartTitleTemp.textContent;
     popupTypeViewerImage.alt = evtTarget.alt;
-    popupShow(popupTypeViewer);
+    showPopup(popupTypeViewer);
   });
 
   return element;
@@ -164,34 +173,8 @@ function renderCard(nameTitle, linkImg, conteiner){
 }
 
 
-//?--------------------------------------заполняю секцию elements карточками------------------------------------------\\
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  }
-];
 
 
-initialCards.forEach(function(item){renderCard(item.name, item.link, elementsList)});
+
+
 

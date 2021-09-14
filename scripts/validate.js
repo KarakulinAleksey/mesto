@@ -64,14 +64,15 @@ const enableValidation = function({formSelector, inputSelector, submitButtonSele
   });
 };
 
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-enableValidation({
+const parameterObject = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__form-button-save',
   inactiveButtonClass: 'popup__form-button-save_type_unable',
   inputErrorClass: 'popup__form-input_status-error',
   errorClass: 'popup__input-error'
-});
+};
+
+enableValidation(parameterObject);
+
+
