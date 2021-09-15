@@ -54,20 +54,20 @@ const arrCartTitle = Array.from(cartTitle);
 //?--------------функции открытия-закрытия---------------\\
 function showPopup(popup) {
   popup.classList.add("popup_show");
-  document.addEventListener('keydown', function(evt){handleESC(evt, popup);});
+  document.addEventListener('keydown', handleESC);
 }
 
 function closePopup (popup){
   popup.classList.remove("popup_show");
-  document.removeEventListener('keydown', function(evt){handleESC(evt, popup);});
+  document.removeEventListener('keydown', handleESC);
 }
 
 
 //----------------функция закрытия попапа при нажатии на esc-------\\
 
-function handleESC(evt, popup) {
+function handleESC(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popup);
+    closePopup(document.querySelector('.popup_show'));
   };
 }
 
@@ -104,9 +104,9 @@ popupTypeViewerButton.addEventListener("click", function(){closePopup(popupTypeV
 setClosePopupEventListener(popupTypeViewer,popupContainerTypeViewer);
 
 //?--------------отправка формы попапа профиля-----------------------------------\\
-popupFormEditProfile.addEventListener("submit", formSubmitHandler);
+popupFormEditProfile.addEventListener("submit", handleProfileSubmit);
 
-function formSubmitHandler(evt) {
+function handleProfileSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupFormInputUserName.value;
   profileText.textContent = popupFormInputProfession.value;
@@ -126,7 +126,9 @@ function formSubmitNewMesto(evt) {
   evt.target.reset();
 
 
-  enableValidation(parameterObject);
+  const button = popupFormNewMesto.querySelector(".popup__form-button-save");
+  button.classList.add("popup__form-button-save_type_unable");
+  button.disabled = true;
 
   closePopup(popupNewMesto);
 }
