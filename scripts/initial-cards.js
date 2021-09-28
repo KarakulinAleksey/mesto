@@ -1,5 +1,4 @@
-//?--------------------------------------заполняю секцию elements карточками------------------------------------------\\
-const initialCards = [
+export const initialCards = [
   {
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -26,4 +25,4 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(function(item){renderCard(item.name, item.link, elementsList)});
+
