@@ -23,13 +23,11 @@ import { elementsList,/*эллемент для вставки карточек*
          popupFormInputCartLink, /*инпут с ссылкой на изображение*/
 
          validationConfig /*объект свойства для класса FormValidator*/
-
         } from "./var.js";
 import Card from "./Card.js";
 import {showPopup, /*функция открытия попапа*/
         closePopup, /*функция закрытия попапа*/
         setPopupCloseEventListener /*функция закрытия попапа при нажатии на свободное место вне формы*/
-        // formSubmitHandler
        } from "./utils.js";
 import FormValidator from "./FormValidator.js";
 
@@ -41,18 +39,21 @@ formValidatorFormNewMesto .enableValidation();
 
 //----------добавить карточки при загрузки страницы---------------\\
 initialCards.forEach(function (item) {
-  const card = new Card(item, cartTemlate);
-  elementsList.prepend(card.generateCard());
+  elementsList.prepend(createCard(item, cartTemlate));
 });
 
 //------------открытие попапа редактирования профиля---------------------//
 profileEditButton.addEventListener("click", function(){
   showPopup(popupEditProfile);
+  formValidatorFormEditProfile.resetValidation();
   popupFormInputUserName.value = profileTitle.textContent;
   popupFormInputProfession.value = profileText.textContent;
 });
 //------------открыть попап добавление карточки----------------------------//
-profileAddButton.addEventListener("click", function(){showPopup(popupNewMesto)});
+profileAddButton.addEventListener("click", function(){
+  formValidatorFormNewMesto.resetValidation();
+  showPopup(popupNewMesto)
+});
 
 //------------закрыть попапа просмотра изображения при нажатии на кнопку "крестик"----------\\
 popupTypeViewerButtonExit.addEventListener("click", function(){closePopup(popupTypeViewer)});
@@ -73,24 +74,25 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupFormInputUserName.value;
   profileText.textContent = popupFormInputProfession.value;
-  formValidatorFormEditProfile.enableValidation();
   closePopup(popupEditProfile);
 }
 popupFormEditProfile.addEventListener("submit", formSubmitHandler);
 
-//---------отправить форму попап добавлеия новой карточки----------//
+//---------отправить форму попап добавления новой карточки----------//
 function formSubmitNewMesto(evt) {
   evt.preventDefault();
   const cardValue = {
     name: popupFormInputCartName.value,
     link: popupFormInputCartLink.value,
   }
-  const card = new Card(cardValue, cartTemlate);
-  elementsList.prepend(card.generateCard());
+  elementsList.prepend(createCard(cardValue, cartTemlate));
   evt.target.reset();
-  formValidatorFormNewMesto .enableValidation();
   closePopup(popupNewMesto);
 }
 popupFormNewMesto.addEventListener("submit", formSubmitNewMesto);
 
 
+function createCard(item, cartTemlate){
+  const card = new Card(item, cartTemlate);
+  return card.generateCard();
+}
