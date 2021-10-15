@@ -1,8 +1,7 @@
-import {popupTypeViewer, popupTypeViewerImage, popupCaption} from "./var.js";
-import { showPopup } from "./utils.js";
 
  export default class Card {
-    constructor(data, cardSelector){
+    constructor({data, handleCardClick}, cardSelector){
+    this._handleCardClick = handleCardClick;
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -40,7 +39,7 @@ import { showPopup } from "./utils.js";
 
   //*--------------добавить событие кнопки удаления-----------------------------------\\
   _setEventListenersDelet(){
-    this._buttonDelete.addEventListener("click", (evt) => {
+    this._buttonDelete.addEventListener("click", () => {
       this._element.remove();
     });
   }
@@ -49,10 +48,7 @@ import { showPopup } from "./utils.js";
  _setEventListenersImage(){
   this._image.addEventListener("click", (evt)=>{
     const evtTarget = evt.target;
-    popupTypeViewerImage.src = evtTarget.src;
-    popupTypeViewerImage.alt = evtTarget.alt;
-    popupCaption.textContent = this._title.textContent;
-    showPopup(popupTypeViewer);
+    this._handleCardClick(evtTarget, this._title.textContent)
   });
   }
 }
