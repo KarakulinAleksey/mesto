@@ -1,6 +1,6 @@
 
- export default class Card {
-    constructor({data, handleCardClick}, cardSelector){
+export default class Card {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._handleCardClick = handleCardClick;
     this._name = data.name;
     this._link = data.link;
@@ -17,20 +17,25 @@
     return cardElement;
   }
   //----------------создать карточку---------------------------------------------------\\
-  generateCard(){
+
+  _setEventListeners() {
+    this._setEventListenersLike();
+    this._setEventListenersDelet();
+    this._setEventListenersImage();
+  }
+
+  generateCard() {
     this._image.alt = this._name;
     this._image.src = this._link;
     this._title.textContent = this._name;
 
-    this._setEventListenersLike();
-    this._setEventListenersDelet();
-    this._setEventListenersImage();
+    this._setEventListeners();
 
     return this._element;
   }
 
   //*--------------добавить событие кнопки likee-----------------------------------\\
-  _setEventListenersLike(){
+  _setEventListenersLike() {
     this._buttonLikee.addEventListener("click", function (evt) {
       const evtTarget = evt.target;
       evtTarget.classList.toggle("elements__image-like_active");
@@ -38,18 +43,17 @@
   }
 
   //*--------------добавить событие кнопки удаления-----------------------------------\\
-  _setEventListenersDelet(){
+  _setEventListenersDelet() {
     this._buttonDelete.addEventListener("click", () => {
       this._element.remove();
     });
   }
 
- //*-----------добавить событие картинки-----------------------------\\
- _setEventListenersImage(){
-  this._image.addEventListener("click", (evt)=>{
-    const evtTarget = evt.target;
-    this._handleCardClick(evtTarget, this._title.textContent)
-  });
+  //*-----------добавить событие картинки-----------------------------\\
+  _setEventListenersImage() {
+    this._image.addEventListener("click", () => {
+      this._handleCardClick(this._link, this._name);
+    });
   }
 }
 
