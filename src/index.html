@@ -22,11 +22,15 @@
   <main class="content section page__content">
     <section class="profile section">
       <div class="profile__figure">
-        <img src="<%=require('./images/kusto.jpg')%>" alt="фотогалерея Жак-Ив Кусто" class="profile__avatar" />
+        <div class="profile__avatar-section">
+          <!-- <img src="<%=require('./images/kusto.jpg')%>" alt="фотогалерея Жак-Ив Кусто" class="profile__avatar" /> -->
+          <img src="" alt="" class="profile__avatar" />
+          <img src="<%=require('./images/Pencil.svg')%>" alt="ковер" class="profile__avatar-cover" />
+        </div>
         <div class="profile__info">
           <div class="profile__info-text">
-            <h1 class="profile__title section-title">Жак-Ив Кусто</h1>
-            <p class="profile__text section-title section-title_size_medium">Исследователь океана</p>
+            <h1 class="profile__title section-title"></h1>
+            <p class="profile__text section-title section-title_size_medium"></p>
           </div>
           <button type="button" class="profile__edit-button" aria-label="кнопка редактирования профиля"></button>
         </div>
@@ -100,13 +104,42 @@
     </div>
   </div>
 
+  <div class="popup popup_type_confirm ">
+    <div class="popup__container popup__container_type_confirm">
+      <button type="button" class="popup__form-button-exit"
+        aria-label="кнопка закрытия формы подтверждения"></button>
+      <form name="form-confirm" class="popup__form popup__form_type_confirm section" novalidate>
+        <h2 class="popup__form-title section-title">Вы уверены?</h2>
+        <button type="submit" class="popup__form-botton-confirm">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_update-avatar">
+    <div class="popup__container popup__container_type_update-avatar">
+      <button type="button" class="popup__form-button-exit"
+        aria-label="кнопка закрытия формы обновления профиля"></button>
+      <form name="form-user-profile" class="popup__form popup__form_type_update-avatar section" novalidate>
+        <h2 class="popup__form-title section-title">Обновить аватар</h2>
+          <div class='popup__container-input'>
+            <input name="link" placeholder="Ссылка на картинку" type="url" class="popup__form-input section-title popup__form-input_type_cart-link" required/>
+            <span class="link-input-error"></span>
+          </div>
+        <button type="submit" class="popup__form-button-save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <template id="cart-template">
     <li class="elements__element">
       <button type="button" class="elements__button-remove" aria-label="кнопка удаления изображения"></button>
       <img src="./" alt="" id="elements__image" class="elements__image" />
       <div class="elements__likee">
         <h2 class="elements__title"></h2>
-        <button type="button" class="elements__image-likee new-like"></button>
+        <div class='elements__conteiner-count-likee'>
+          <button type="button" class="elements__image-likee new-like"></button>
+          <p class='elements__count-likee'></p>
+        </div>
       </div>
     </li>
   </template>
