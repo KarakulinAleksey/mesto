@@ -13,7 +13,7 @@ export default class UserInfo {
 
   setUserInfo({ infoOdject }) {
     this._name = infoOdject.name;
-    this._profession = infoOdject.profession;
+    this._profession = infoOdject.about;
     this._profileTitle.textContent = this._name;
     this._profileText.textContent = this._profession;
   }
