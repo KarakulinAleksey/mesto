@@ -7,6 +7,7 @@ export const profileText = profileInfo.querySelector(".profile__text"); //элл
 export const profileEditButton = profileFigure.querySelector(".profile__edit-button"); //кнопка редактирование профиля
 export const profileAddButton = profile.querySelector(".profile__add-button"); //кнопка добавления карточки
 export const profileAvatar = document.querySelector(".profile__avatar-section"); //аватар
+export const imageUserInfo = document.querySelector('.profile__avatar'); //картинка аватар
 
 //-------переменные для темплейта карточка ----------------------//
 export const elementsList = document.querySelector(".elements__list"); //эллемент для загрузки карточек

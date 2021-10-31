@@ -1,28 +1,37 @@
-
 export default class Card {
-  constructor({ data, handleCardClick, handleDeleteIconClick, handleLikeClick}, cardSelector, cardIdMe) {
+  constructor(
+    { data, handleCardClick, handleDeleteIconClick, handleLikeClick },
+    cardSelector,
+    cardIdMe
+  ) {
     //debugger;
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._handleLikeClick = handleLikeClick;
     this._cardIdMe = cardIdMe;
     this._cardIdOwer = data.owner._id;
-    this._cardId = data._id
+    this._cardId = data._id;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._cardSelector = cardSelector;
     this._element = this._getTemplate(); //копия темплэйта
     this._countLikee = this._element.querySelector(".elements__count-likee");
-    this._buttonRemove = this._element.querySelector(".elements__button-remove");
+    this._buttonRemove = this._element.querySelector(
+      ".elements__button-remove"
+    );
     this._image = this._element.querySelector(".elements__image"); //картинка
     this._title = this._element.querySelector(".elements__title"); //название картинки
     this._buttonLikee = this._element.querySelector(".elements__image-likee"); //кнопка лайке
-    this._buttonDelete = this._element.querySelector(".elements__button-remove"); //кнопка удления карточки
+    this._buttonDelete = this._element.querySelector(
+      ".elements__button-remove"
+    ); //кнопка удления карточки
   }
   //----------------найти эллемент темплейта карточки и сделать копию------------------\\
   _getTemplate() {
-    const cardElement = this._cardSelector.content.querySelector(".elements__element").cloneNode(true);
+    const cardElement = this._cardSelector.content
+      .querySelector(".elements__element")
+      .cloneNode(true);
     return cardElement;
   }
   //----------------создать карточку---------------------------------------------------\\
@@ -31,7 +40,6 @@ export default class Card {
     this._setEventListenersLike();
     this._setEventListenersDelet();
     this._setEventListenersImage();
-
   }
 
   generateCard() {
@@ -47,19 +55,26 @@ export default class Card {
 
   //*--------------добавить событие кнопки likee-----------------------------------\\
   _setEventListenersLike() {
-      this._buttonLikee.addEventListener("click", (evt)=> {
-      const evtTarget = evt.target;
-      if (!evtTarget.classList.contains("elements__image-like_active")){
-        evtTarget.classList.toggle("elements__image-like_active");
-        this._handleLikeClick(this._cardId, this._countLikee, true);
-      }
-      else{
-        evtTarget.classList.toggle("elements__image-like_active");
-        this._handleLikeClick(this._cardId, this._countLikee, false);
+    this._buttonLikee.addEventListener("click", () => {
+      if (
+        !this._buttonLikee.classList.contains("elements__image-like_active")
+      ) {
+        this._handleLikeClick(
+          this._buttonLikee,
+          this._cardId,
+          this._countLikee,
+          true
+        );
+      } else {
+        this._handleLikeClick(
+          this._buttonLikee,
+          this._cardId,
+          this._countLikee,
+          false
+        );
       }
     });
   }
-
 
   //*--------------добавить событие кнопки удаления-----------------------------------\\
   _setEventListenersDelet() {
@@ -76,13 +91,19 @@ export default class Card {
   }
 
   //--------------метод включения кнопки удпления---------------//
-  _setButtonRemove(){
-    if (this._cardIdMe === this._cardIdOwer){
-      this._buttonRemove.classList.add('popup_show');
+  _setButtonRemove() {
+    if (this._cardIdMe === this._cardIdOwer) {
+      this._buttonRemove.classList.add("popup_show");
+    }
+  }
+
+  setLikeLoadPage(arr) {  
+    if (
+      arr.some((idMe) => {
+        return idMe._id === this._cardIdMe;
+      })
+    ) {
+      this._buttonLikee.classList.add("elements__image-like_active");
     }
   }
 }
-
-
-
-

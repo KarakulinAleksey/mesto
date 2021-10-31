@@ -1,186 +1,102 @@
-export default class Api{
-  constructor(){
-    this._urlAllCards = "https://mesto.nomoreparties.co/v1/cohort-29/cards/";
-    this._urlUserInfo = "https://nomoreparties.co/v1/cohort-29/users/me";
-    this._urlAvatar = "https://nomoreparties.co/v1/cohort-29/users/me/avatar";
-    this._urlLikes = "https://mesto.nomoreparties.co/v1/cohort-29/cards/likes/"
-    this._authorization = "76bc0008-f467-484c-9d7d-ba27b504e337";
-    this._contentType = "application/json";
+export default class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
+  //---------метод проверки запроса-------//
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
 //---------метод запроса с сервера всех карточек-------//
-  getAllCards(){
-    return fetch(this._urlAllCards,{
+  getAllCards() {
+    return fetch(`${this._baseUrl}/cards/`, {
       method: 'GET',
-      headers: {
-        authorization: this._authorization,
-        "content-type": this._contentType
-        }
-      })
-      .then((res) => {
-        if (res.ok){
-          return res.json();
-        }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      headers: this._headers
+    })
+      .then(this._checkResponse)
   }
-//------------метод запроса с сервера информации пользователя-----//
-  getUserInfo(){
-    return fetch(this._urlUserInfo,{
+  //------------метод запроса с сервера информации пользователя-----//
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: {
-        authorization: this._authorization,
-        "content-type": this._contentType
-        }
-      })
-      .then((res) => {
-        if (res.ok){
-          return res.json();
-        }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      headers: this._headers
+    })
+      .then(this._checkResponse)
   }
-//-------------метод обновления информации пользователя----------//
-  editUserInfo(userName, userAbout){
+  //-------------метод обновления информации пользователя----------//
+  editUserInfo(userName, userAbout) {
     this._userName = userName;
     this._userAbout = userAbout;
-   return fetch(this._urlUserInfo, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-    },
-    body: JSON.stringify({
-      name: this._userName,
-      about: this._userAbout
+      headers: this._headers,
+      body: JSON.stringify({
+        name: this._userName,
+        about: this._userAbout
       })
     })
-    .then((res) => {
-      if (res.ok){
-          return res.json();
-        }
-     return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      .then(this._checkResponse)
   }
-//-------------метод добавления новой карточки---------------//
-  addCard(cardName, cardLink){
+  //-------------метод добавления новой карточки---------------//
+  addCard(cardName, cardLink) {
     this._cardName = cardName;
     this._cardLink = cardLink;
-    return fetch(this._urlAllCards, {
+    return fetch(`${this._baseUrl}/cards/`, {
       method: 'POST',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-    },
+      headers: this._headers,
       body: JSON.stringify({
         "name": this._cardName,
         "link": this._cardLink
       })
     })
-    .then((res) => {
-      if (res.ok){
-        return res.json();
-      }
-    return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      .then(this._checkResponse)
   }
-//---------------метод удаления карточки-----------//
-  deleteCard(idCard){
+  //---------------метод удаления карточки-----------//
+  deleteCard(idCard) {
     this._idCard = idCard;
-    return fetch(`${this._urlAllCards}${idCard}`, {
+    return fetch(`${this._baseUrl}/cards/${idCard}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-    }
+      headers: this._headers
     })
-    .then((res) => {
-      if (res.ok){
-        return res.json();
-      }
-    return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      .then(this._checkResponse)
   }
-//---------------метод обновления аватара------------//
-  editAvatar(avatar){
+  //---------------метод обновления аватара------------//
+  editAvatar(avatar) {
     this._avatar = avatar;
-  return fetch(this._urlAvatar, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-    },
-    body: JSON.stringify({
-      avatar: this._avatar,
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: this._avatar,
       })
     })
-    .then((res) => {
-      if (res.ok){
-          return res.json();
-        }
-    return Promise.reject(`Ошибка: ${res.status}`);
-    });
+      .then(this._checkResponse)
   }
 
   //-------------метод постановки лайка-------//
-  likeCard(idCard, isLike){
-    if (isLike){
+  likeCard(idCard, isLike) {
+    if (isLike) {
       this._idCard = idCard;
-      return fetch(`${this._urlLikes}${idCard}`, {
+      return fetch(`${this._baseUrl}/cards/likes/${idCard}`, {
         method: 'PUT',
-        headers: {
-          authorization: this._authorization,
-          'Content-Type': this._contentType
-      }
+        headers: this._headers
       })
-      .then((res) => {
-        if (res.ok){
-          return res.json();
-        }
-      return Promise.reject(`Ошибка: ${res.status}`);
-      });
+        .then(this._checkResponse)
     }
-  else
-    {
+    else {
       this._idCard = idCard;
-      return fetch(`${this._urlLikes}${idCard}`, {
+      return fetch(`${this._baseUrl}/cards/likes/${idCard}`, {
         method: 'DELETE',
-        headers: {
-          authorization: this._authorization,
-          'Content-Type': this._contentType
-      }
+        headers: this._headers
       })
-      .then((res) => {
-        if (res.ok){
-          return res.json();
-        }
-      return Promise.reject(`Ошибка: ${res.status}`);
-      });
+        .then(this._checkResponse)
     }
   }
 
-
-
-  //-------------метод снятия лайка-------//
-  deleteLikeCard(idCard){
-    this._idCard = idCard;
-    return fetch(`${this._urlLikes}${idCard}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-    }
-    })
-    .then((res) => {
-      if (res.ok){
-        return res.json();
-      }
-    return Promise.reject(`Ошибка: ${res.status}`);
-    });
-  }
-
-};
-
+}
 
 

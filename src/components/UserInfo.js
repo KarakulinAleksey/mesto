@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(profileTitle, profileText) {
+  constructor(profileTitle, profileText, profileAvatar) {
     this._profileTitle = profileTitle;
     this._profileText = profileText;
+    this._profileAvatar = profileAvatar;
   }
 
   getUserInfo() {
@@ -16,5 +17,11 @@ export default class UserInfo {
     this._profession = infoOdject.about;
     this._profileTitle.textContent = this._name;
     this._profileText.textContent = this._profession;
+  }
+
+  setAvatar(avatar, name) {
+    this._profileAvatar.src = avatar;
+    this._profileAvatar.alt = name;
+
   }
 }
